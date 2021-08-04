@@ -1,6 +1,15 @@
 :root {
+  --color-light: #f8f9fa;
   --color-dark: #222;
   --color-blue: #3199dc;
+
+  --spacing-small: 10px;
+  --spacing-medium: 15px;
+  --spacing-large: 20px;
+
+  --brs-small: 5px;
+  --brs-medium: 10px;
+  --brs-large: 10px;
 }
 
 *,
@@ -15,6 +24,10 @@ body {
   padding: 0;
 
   background-color: var(--color-dark);
+
+  font-size: 16px;
+  line-height: 1.7;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -34,4 +47,11 @@ body {
 
 ::-webkit-scrollbar-track {
   background-color: var(--color-dark);
+}
+
+:global(.btn) {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
 }
