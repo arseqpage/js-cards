@@ -11,8 +11,6 @@ class GetDataApi {
         },
       });
 
-      const a = 'f';
-
       return response.data.data.results;
     } catch (error) {
       console.log(error.message);
