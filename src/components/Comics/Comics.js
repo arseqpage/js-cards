@@ -5,18 +5,19 @@ import {
   IMG_STANDART_XLARGE,
   IMT_NOT_AVAILABLE,
 } from '../../constants/api';
-import { getDataApi } from '../../utils/getDataApi';
-import { ROOT_INDEX } from '../../constants/root';
+import {getDataApi} from '../../utils/getDataApi';
+import {ROOT_INDEX} from '../../constants/root';
+
+import Error from '../Error';
 
 import classes from './Comics.css';
 
 class Comics {
-  async render() {
-    const data = await getDataApi.getData(API_URL + URL_COMICS);
+  renderComics(data) {
     let htmlContent = '';
 
     if (data) {
-      data.forEach(({ id, title, thumbnail: { extension, path } }) => {
+      data.forEach(({id, title, thumbnail: {extension, path}}) => {
         if (path.lastIndexOf(IMT_NOT_AVAILABLE) === -1) {
           const uri = API_URL + URL_COMICS + '/' + id + '/' + URL_CHARACTERS;
           const imgSrc = path + '/' + IMG_STANDART_XLARGE + '.' + extension;
@@ -26,7 +27,7 @@ class Comics {
           htmlContent += `
             <li class="comics__item ${classes.border} ${classes.comics__item}" data-uri="${uri}">
               <span class="${classes.comics__name}">${title}</span>
-              <img class="img-contain ${classes.comics__img}" src='${imgSrc}'/>
+              <img class="img-contain ${classes.comics__img}" src='${imgSrc}' alt={title}/>
             </li>
           `;
         }
@@ -45,6 +46,13 @@ class Comics {
         Данные не были получены :( Попробуйте перезагрузить страницу.
       `;
     }
+  }
+
+  async render() {
+    const data = await getDataApi.getData(API_URL + URL_COMICS);
+
+    data ? this.renderComics(data) : Error.render();
+
   }
 
   eventListener() {
