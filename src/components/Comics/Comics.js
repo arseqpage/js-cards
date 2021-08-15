@@ -8,6 +8,7 @@ import {
 import {getDataApi} from '../../utils/getDataApi';
 import {ROOT_INDEX} from '../../constants/root';
 
+import Characters from "../Characters";
 import Error from '../Error';
 
 import classes from './Comics.css';
@@ -21,7 +22,6 @@ class Comics {
         if (path.lastIndexOf(IMT_NOT_AVAILABLE) === -1) {
           const uri = API_URL + URL_COMICS + '/' + id + '/' + URL_CHARACTERS;
           const imgSrc = path + '/' + IMG_STANDART_XLARGE + '.' + extension;
-          console.log(path);
           // image_not_available
 
           htmlContent += `
@@ -60,7 +60,7 @@ class Comics {
       const uri = element.getAttribute('data-uri');
 
       element.addEventListener('click', () => {
-        console.log(uri);
+        Characters.render(uri);
       });
     });
   }

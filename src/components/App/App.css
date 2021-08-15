@@ -11,6 +11,8 @@
   --brs-small: 5px;
   --brs-medium: 10px;
   --brs-large: 10px;
+
+  --box-shadow: 0 2px 24px rgba(168 175, 196, 0.5)
 }
 
 *,
@@ -55,4 +57,10 @@ body {
   outline: none;
   background: none;
   cursor: pointer;
+}
+
+:global(.bg-contain) {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
